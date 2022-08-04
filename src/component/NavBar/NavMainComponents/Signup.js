@@ -1,8 +1,9 @@
 import React from 'react';
-import { makeStyles } from "@mui/styles";
 import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
 import * as Action from "./Redux/Modules/actions/Action"
+import { makeStyles } from '@mui/styles';
+
 const useStyles = makeStyles((theme) => ({
     nike:{
         width: 50,
@@ -167,17 +168,17 @@ function SignUp(props) {
                         placeholder="Email address" 
                         className={classes.input} 
                         name="email"
-                        // style={{ borderColor: errors.email && "red" }}
-                        // ref={register({
-                        //     required: true,
-                        //     pattern: {
-                        //         value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        //     }
-                        // })}
+                        style={{ borderColor: errors.email && "red" }}
+                        ref={register({
+                            required: true,
+                            pattern: {
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                            }
+                        })}
                     />
-                    {/* {errors.email && 
+                    {errors.email && 
                         <p className={classes.inputValid}>Please enter a valid email address.</p>
-                    } */}
+                    }
                 </div>
                 <div className={classes.inputContainer}>
                     <input 
@@ -185,17 +186,17 @@ function SignUp(props) {
                         placeholder="Password" 
                         className={classes.input}
                         name="password"
-                        // style={{ borderColor: errors.password && "red" }}
-                        // ref={register({
-                        //     required: true,
-                        //     pattern: {
-                        //         value: /^.{8,}$/i,
-                        //     }
-                        // })}
+                        style={{ borderColor: errors.password && "red" }}
+                        ref={register({
+                            required: true,
+                            pattern: {
+                                value: /^.{8,}$/i,
+                            }
+                        })}
                     />
-                    {/* {errors.password && 
+                    {errors.password && 
                         <p className={classes.inputValid}>Password does not meet minimum requirements.</p>
-                    } */}
+                    }
                 </div>
                 <div className={classes.inputContainer}>
                     <input 

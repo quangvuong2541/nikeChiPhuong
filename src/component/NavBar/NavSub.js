@@ -1,10 +1,10 @@
 import React from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import { makeStyles } from "@mui/styles";
 import SignIn from "./NavMainComponents/SignIn";
-import { Link, useNavigate } from "react-router-dom";
+import { AppBar } from "@mui/material";
+import { Toolbar } from "@mui/material";
+import { Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   nav: {
@@ -15,9 +15,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     boxShadow: "none",
     fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
-    // [theme.breakpoints.down("sm")]: {
-    //   display: "none",
-    // },
+  
     zIndex: 1101,
   },
   title: {
@@ -85,21 +83,45 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavSub() {
   const classes = useStyles();
-  const history = useNavigate()
+
   const [helpMenu, setHelpMenu] = React.useState(false);
 
   return (
-    <AppBar className={classes.nav} id="navsub">
-      <Toolbar className={classes.toolbar}>
-  
+    <div className={classes.toolbar} id="navsub">
+      <Toolbar className={classes.nav}>
+        <Link  to="/home" id="jordan" className={classes.linkJordan}>
+          {/* home */}
+        </Link>
 
         <Typography variant="h6" className={classes.title}></Typography>
         <div className={classes.nav1}>
-          <Link to ="/">home </Link>
-          
+          <div
+            onMouseOver={() => setHelpMenu(true)}
+            onMouseLeave={() => setHelpMenu(false)}
+          >
+            <span href="#" className={classes.nav1Menu}>
+              Help
+            </span>
+            {helpMenu && (
+              <div className={classes.helpMenuContainer}>
+                <div className={classes.helpMenuHeader}>Help</div>
+                <div className={classes.helpMenuItem}>Order Status</div>
+                <div className={classes.helpMenuItem}>
+                  Dispatch and Delivery
+                </div>
+                <div className={classes.helpMenuItem}>Returns</div>
+                <div className={classes.helpMenuItem}>Contact Us</div>
+                <div className={classes.helpMenuItem}>Privacy Policy</div>
+                <div className={classes.helpMenuItem}>Terms of Sale</div>
+                <div className={classes.helpMenuItem}>Terms of Use</div>
+                <div className={classes.helpMenuItem}>Send Us Feedback</div>
+              </div>
+            )}
+          </div>
+          |
           <SignIn />
         </div>
       </Toolbar>
-    </AppBar>
+    </div>
   );
 }

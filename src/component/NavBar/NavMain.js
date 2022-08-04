@@ -1,13 +1,16 @@
 import React from "react";
-
+import NavMainMenu from "./NavMainComponents/NavMainMenu";
+import NavMainFeature from "./NavMainComponents/NavMainFeature";
+import LogoNike from "./NavMainComponents/LogoNike";
+import SearchBox from "./NavMainComponents/SearchBox";
 import PropTypes from "prop-types";
-import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Slide from "@mui/material/Slide";
+import { AppBar } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { Outlet } from "react-router-dom";
-import NavMainMenu from "./NavMainComponents/NavMainMenu";
+import { createTheme } from '@mui/material/styles';
+import SignIn from "./NavMainComponents/SignIn";
 
 /*Hide nav bar on scroll*/
 function HideOnScroll(props) {
@@ -49,29 +52,40 @@ const useStyles = makeStyles((theme) => ({
     zIndex: -1,
   },
 }));
-
+const theme = createTheme({
+  nav: {
+    backgroundColor: "white",
+    color: "black",
+    position: "sticky",
+    height: 60,
+    boxShadow: "none",
+    fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
+  },
+});
 export default function NavMain(props) {
   const classes = useStyles();
 
   return (
-    <div>
-      <React.Fragment >
+    <React.Fragment>
+      {/* <CssBaseline /> */}
+
+      <HideOnScroll {...props}>
+      
+        <AppBar >
+          <Toolbar className={classes.nav}>
+            <NavMainMenu />
+          
+            <LogoNike />
         
-        {/* <CssBaseline /> */}
+            <NavMainFeature />
+       
+          </Toolbar>
 
-        <HideOnScroll {...props}>
-          <AppBar className={classes.nav}>
-            <Toolbar className={classes.toolbar}>
-                    <NavMainMenu/>
-            </Toolbar>
-
-
-          </AppBar>
-        </HideOnScroll>
-        <div id="fallback" className={classes.fallback}></div>
-      </React.Fragment>
-  
-    </div>
-
+          <SearchBox />
+        </AppBar>
+      </HideOnScroll>
+      <div id="fallback" className={classes.fallback}></div>
+   
+    </React.Fragment>
   );
 }

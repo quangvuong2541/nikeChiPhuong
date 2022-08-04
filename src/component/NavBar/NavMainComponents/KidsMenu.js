@@ -6,7 +6,7 @@ import * as action from "../../ListProduct/Module/Actions/action";
 import * as ActionType from "../../ListProduct/Module/Constants/constants";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import 'animate.css';
+import "animate.css";
 import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles((theme) => ({
   mainMenuChoiceLink: {
@@ -21,13 +21,13 @@ const useStyles = makeStyles((theme) => ({
       borderBottom: "2px black solid",
     },
   },
-  menChoiceContainer: {
+  kidsChoiceContainer: {
     position: "absolute",
     left: 0,
     width: "100%",
     display: "none",
     alignItems: "flex-start",
-    paddingLeft: 150,
+    paddingLeft: 355,
     padding: "16px 40px 20px 40px",
     top: 60,
     backgroundColor: "white",
@@ -62,28 +62,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MenMenu() {
+export default function KidsMenu() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const location = useLocation();
 
   React.useEffect(() => {
-    if (location.pathname === "/men") {
-      dispatch(action.actGetProductAPI("male", "clothing"));
+    if (location.pathname === "/kid") {
+      dispatch(action.actGetProductAPI("kid", "clothing"));
     }
   }, []);
-  /*Open and close Men*/
 
-  const openMen = () => {
-    let underline = document.getElementById("Men");
+  /*Open and close Kids*/
+
+  const openKids = () => {
+    let underline = document.getElementById("Kids");
     ReactDOM.findDOMNode(underline).style.borderBottom = "2px black solid";
-    let container = document.getElementById("menContainer");
+    let container = document.getElementById("kidsContainer");
     ReactDOM.findDOMNode(container).style.display = "flex";
   };
-  const closeMen = () => {
-    let underline = document.getElementById("Men");
+  const closeKids = () => {
+    let underline = document.getElementById("Kids");
     ReactDOM.findDOMNode(underline).style.border = "none";
-    let container = document.getElementById("menContainer");
+    let container = document.getElementById("kidsContainer");
     ReactDOM.findDOMNode(container).style.display = "none";
   };
 
@@ -102,63 +103,28 @@ function MenMenu() {
     ReactDOM.findDOMNode(fallback).style.backgroundColor = "transparent";
     ReactDOM.findDOMNode(fallback).style.zIndex = "-1";
   };
+
   return (
     <span
       onMouseEnter={() => {
-        openMen();
+        openKids();
         openFallBack();
       }}
       onMouseLeave={() => {
-        closeMen();
+        closeKids();
         closeFallBack();
       }}
     >
-      <Link to="/men" id="Men" className={classes.mainMenuChoiceLink}>
-        Men
+      <Link to="/kid" id="Kids" className={classes.mainMenuChoiceLink}>
+        Kids
       </Link>
-      {/*Men menu container*/}
-
-      <div id="menContainer" className={classes.menChoiceContainer}>
+      {/*Kids menu container*/}
+      <div id="kidsContainer" className={classes.kidsChoiceContainer}>
         <div className="animate__animated animate__fadeInDown">
           <div className={classes.Choice}>
             <a href="#a" className={classes.menuTitle}>
-              Featured
+              Boy's Shoes
             </a>
-            <a href="#a" className={classes.menuItem}>
-              New Realeases
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              SNKRS Launch Calendar
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Member Access
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Neultrals
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Sustainable Materials
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Air Force 1
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Top Picks Under 2,300,000đ
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Sale
-            </a>
-          </div>
-        </div>
-        <div className="animate__animated animate__fadeInDown">
-          <div className={classes.Choice}>
-            <a href="#a" className={classes.menuTitle}>
-              Shoes
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              New Sneakers
-            </a>
-            {/* <Link href="#" className={classes.menuItem} to="/listProduct?gender=male&typeProduct=shoes">All shoes</Link> */}
             <Link
               to="/listProduct"
               className={classes.menuItem}
@@ -166,13 +132,22 @@ function MenMenu() {
                 dispatch(
                   action.createAction({
                     type: ActionType.CHANGE_GENDER_TYPEPRODUCT,
-                    payload: { gender: "male", typeProduct: "shoes" },
+                    payload: { gender: "kid", typeProduct: "shoes" },
                   })
                 );
               }}
             >
               All shoes
             </Link>
+            <a href="#a" className={classes.menuItem}>
+              Older Kids (3-6.5)
+            </a>
+            <a href="#a" className={classes.menuItem}>
+              Younger Kids (10-2.5)
+            </a>
+            <a href="#a" className={classes.menuItem}>
+              Baby and Toddler (1.5-9.5)
+            </a>
             <a href="#a" className={classes.menuItem}>
               Lifestyle
             </a>
@@ -189,33 +164,27 @@ function MenMenu() {
               Football
             </Link>
             <a href="#a" className={classes.menuItem}>
-              Gym and Training
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Skateboarding
-            </a>
-            <Link to="/tennis" className={classes.menuItem}>
-              Tennis
-            </Link>
-            <a href="#a" className={classes.menuItem}>
               Sandals and Slides
             </a>
-            <a href="#a" className={classes.menuItem}>
-              Customise with Nike By You
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              All Sale Shoes
-            </a>
-          </div>
-        </div>
-        <div className="animate__animated animate__fadeInDown">
-          <div className={classes.Choice}>
-            <Link to="/clothing" className={classes.menuTitle}>
-              Clothing
+            <Link
+              to="/clothing"
+              className={classes.menuTitle}
+              style={{ marginTop: 40 }}
+            >
+              Boy's Clothing
             </Link>
-            {/* <a href="#a" className={classes.menuItem}>
-            All Clothing
-          </a> */}
+            <a href="#a" className={classes.menuItem}>
+              Tops and T-Shirts
+            </a>
+            <a href="#a" className={classes.menuItem}>
+              Hoddies and Sweatshirts
+            </a>
+            <a href="#a" className={classes.menuItem}>
+              Pants and Leggings
+            </a>
+            <a href="#a" className={classes.menuItem}>
+              Shorts
+            </a>
             <Link
               to="/listProduct"
               className={classes.menuItem}
@@ -223,64 +192,125 @@ function MenMenu() {
                 dispatch(
                   action.createAction({
                     type: ActionType.CHANGE_GENDER_TYPEPRODUCT,
-                    payload: { gender: "male", typeProduct: "clothing" },
+                    payload: { gender: "kid", typeProduct: "clothing" },
                   })
                 );
               }}
             >
-              All clothing
-            </Link>
-            <a href="#a" className={classes.menuItem}>
-              Tops and T-Shirts
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Jerseys and Kits
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Hoodies and Sweatshirts
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Jackets and Gilets
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Pants and Leggings
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Tracksuits
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Compression and Base Layer
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Shorts
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Caps
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Socks
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Bags and Backpacks
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Accessories and Equipment
-            </a>
-            <Link to="/clothing" className={classes.menuItem}>
-              All Sale Clothing
+              All Boy's Clothing
             </Link>
           </div>
         </div>
         <div className="animate__animated animate__fadeInDown">
           <div className={classes.Choice}>
             <a href="#a" className={classes.menuTitle}>
-              Shop By Sport
+              Girl's Shoes
             </a>
-            <Link to="running" className={classes.menuItem}>
+            <a href="#a" className={classes.menuItem}>
+              Older Kids (3-6.5)
+            </a>
+            <a href="#a" className={classes.menuItem}>
+              Younger Kids (10-2.5)
+            </a>
+            <a href="#a" className={classes.menuItem}>
+              Baby and Toddler (1.5-9.5)
+            </a>
+            <a href="#a" className={classes.menuItem}>
+              Lifestyle
+            </a>
+            <Link to="/running" className={classes.menuItem}>
               Running
+            </Link>
+            <Link to="/basketball" className={classes.menuItem}>
+              Basketball
             </Link>
             <Link to="/football" className={classes.menuItem}>
               Football
+            </Link>
+            <a href="#a" className={classes.menuItem}>
+              Sandals and Slides
+            </a>
+            <Link
+              to="/listProduct"
+              className={classes.menuItem}
+              onClick={() => {
+                dispatch(
+                  action.createAction({
+                    type: ActionType.CHANGE_GENDER_TYPEPRODUCT,
+                    payload: { gender: "kid", typeProduct: "shoes" },
+                  })
+                );
+              }}
+            >
+              All shoes
+            </Link>
+            <Link
+              to="/clothing"
+              className={classes.menuTitle}
+              style={{ marginTop: 40 }}
+            >
+              Girl's Clothing
+            </Link>
+            <a href="#a" className={classes.menuItem}>
+              Tops and T-Shirts
+            </a>
+            <a href="#a" className={classes.menuItem}>
+              Sports Bras
+            </a>
+            <a href="#a" className={classes.menuItem}>
+              Hoddies and Sweatshirts
+            </a>
+            <a href="#a" className={classes.menuItem}>
+              Pants and Leggings
+            </a>
+            <a href="#a" className={classes.menuItem}>
+              Shorts
+            </a>
+            <Link
+              to="/listProduct"
+              className={classes.menuItem}
+              onClick={() => {
+                dispatch(
+                  action.createAction({
+                    type: ActionType.CHANGE_GENDER_TYPEPRODUCT,
+                    payload: { gender: "kid", typeProduct: "clothing" },
+                  })
+                );
+              }}
+            >
+              All Girl's Clothing
+            </Link>
+          </div>
+        </div>
+        <div className="animate__animated animate__fadeInDown">
+          <div className={classes.Choice}>
+            <a href="#a" className={classes.menuTitle}>
+              Accessories and Equipment
+            </a>
+            <a href="#a" className={classes.menuItem}>
+              Balls
+            </a>
+            <a href="#a" className={classes.menuItem}>
+              Bags and Backpacks
+            </a>
+            <a href="#a" className={classes.menuItem}>
+              Socks
+            </a>
+            <a href="#a" className={classes.menuItem}>
+              Hat and Headwear
+            </a>
+            <a
+              href="#a"
+              className={classes.menuTitle}
+              style={{ marginTop: 40 }}
+            >
+              Shop By Sport
+            </a>
+            <Link to="/running" className={classes.menuItem}>
+              Running
+            </Link>
+            <Link to="/football" className={classes.menuItem}>
+              American Football
             </Link>
             <Link to="/basketball" className={classes.menuItem}>
               Basketball
@@ -288,72 +318,12 @@ function MenMenu() {
             <a href="#a" className={classes.menuItem}>
               Gym and Training
             </a>
-            <a href="#a" className={classes.menuItem}>
-              Yoga
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Skateboarding
-            </a>
             <Link to="/tennis" className={classes.menuItem}>
               Tennis
             </Link>
-            <a href="#a" className={classes.menuItem}>
-              Golf
-            </a>
-            <a
-              href="#a"
-              className={classes.menuTitle}
-              style={{ marginTop: 40 }}
-            >
-              Shop By Hand
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Nike Sportswear
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              NikeLab
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Nike By You
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Jordan
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              ACG
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              NBA
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Nike SB
-            </a>
-          </div>
-        </div>
-        <div className="animate__animated animate__fadeInDown">
-          <div className={classes.Choice}>
-            <a href="#a" className={classes.menuTitle}>
-              Icons
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Air Force 1
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Pegasus
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Blazer
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Air Jordan 1
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Air Max
-            </a>
           </div>
         </div>
       </div>
     </span>
   );
 }
-export default connect()(MenMenu);

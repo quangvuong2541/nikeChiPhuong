@@ -6,7 +6,7 @@ import * as action from "../../ListProduct/Module/Actions/action";
 import * as ActionType from "../../ListProduct/Module/Constants/constants";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import 'animate.css';
+import "animate.css";
 import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles((theme) => ({
   mainMenuChoiceLink: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
       borderBottom: "2px black solid",
     },
   },
-  menChoiceContainer: {
+  womenChoiceContainer: {
     position: "absolute",
     left: 0,
     width: "100%",
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "16px 40px 20px 40px",
     top: 60,
     backgroundColor: "white",
-   
+    
   },
   Choice: {
     padding: "16px 8px 0px",
@@ -62,33 +62,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MenMenu() {
+export default function WomenMenu() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const location = useLocation();
 
   React.useEffect(() => {
-    if (location.pathname === "/men") {
-      dispatch(action.actGetProductAPI("male", "clothing"));
+    if (location.pathname === "/women") {
+      dispatch(action.actGetProductAPI("female", "clothing"));
     }
   }, []);
-  /*Open and close Men*/
 
-  const openMen = () => {
-    let underline = document.getElementById("Men");
+  /*Open and close Women*/
+  const openWomen = () => {
+    let underline = document.getElementById("Women");
     ReactDOM.findDOMNode(underline).style.borderBottom = "2px black solid";
-    let container = document.getElementById("menContainer");
+    let container = document.getElementById("womenContainer");
     ReactDOM.findDOMNode(container).style.display = "flex";
   };
-  const closeMen = () => {
-    let underline = document.getElementById("Men");
+  const closeWomen = () => {
+    let underline = document.getElementById("Women");
     ReactDOM.findDOMNode(underline).style.border = "none";
-    let container = document.getElementById("menContainer");
+    let container = document.getElementById("womenContainer");
     ReactDOM.findDOMNode(container).style.display = "none";
   };
 
   /*On fallback*/
-
   const openFallBack = () => {
     let fallback = document.getElementById("fallback");
     ReactDOM.findDOMNode(fallback).style.backgroundColor = "rgba(0,0,0,0.4)";
@@ -96,29 +95,28 @@ function MenMenu() {
   };
 
   /*Off fallback*/
-
   const closeFallBack = () => {
     let fallback = document.getElementById("fallback");
     ReactDOM.findDOMNode(fallback).style.backgroundColor = "transparent";
     ReactDOM.findDOMNode(fallback).style.zIndex = "-1";
   };
+
   return (
     <span
       onMouseEnter={() => {
-        openMen();
+        openWomen();
         openFallBack();
       }}
       onMouseLeave={() => {
-        closeMen();
+        closeWomen();
         closeFallBack();
       }}
     >
-      <Link to="/men" id="Men" className={classes.mainMenuChoiceLink}>
-        Men
+      <Link to="/women" id="Women" className={classes.mainMenuChoiceLink}>
+        Women
       </Link>
-      {/*Men menu container*/}
-
-      <div id="menContainer" className={classes.menChoiceContainer}>
+      {/*Women menu container*/}
+      <div id="womenContainer" className={classes.womenChoiceContainer}>
         <div className="animate__animated animate__fadeInDown">
           <div className={classes.Choice}>
             <a href="#a" className={classes.menuTitle}>
@@ -137,13 +135,16 @@ function MenMenu() {
               Neultrals
             </a>
             <a href="#a" className={classes.menuItem}>
+              Air Force 1
+            </a>
+            <a href="#a" className={classes.menuItem}>
+              Nike Icon Clash
+            </a>
+            <a href="#a" className={classes.menuItem}>
               Sustainable Materials
             </a>
             <a href="#a" className={classes.menuItem}>
               Air Force 1
-            </a>
-            <a href="#a" className={classes.menuItem}>
-              Top Picks Under 2,300,000đ
             </a>
             <a href="#a" className={classes.menuItem}>
               Sale
@@ -155,10 +156,6 @@ function MenMenu() {
             <a href="#a" className={classes.menuTitle}>
               Shoes
             </a>
-            <a href="#a" className={classes.menuItem}>
-              New Sneakers
-            </a>
-            {/* <Link href="#" className={classes.menuItem} to="/listProduct?gender=male&typeProduct=shoes">All shoes</Link> */}
             <Link
               to="/listProduct"
               className={classes.menuItem}
@@ -166,7 +163,7 @@ function MenMenu() {
                 dispatch(
                   action.createAction({
                     type: ActionType.CHANGE_GENDER_TYPEPRODUCT,
-                    payload: { gender: "male", typeProduct: "shoes" },
+                    payload: { gender: "female", typeProduct: "shoes" },
                   })
                 );
               }}
@@ -179,18 +176,18 @@ function MenMenu() {
             <Link to="/running" className={classes.menuItem}>
               Running
             </Link>
-            <Link to="/basketball" className={classes.menuItem}>
-              Basketball
-            </Link>
+            <a href="#a" className={classes.menuItem}>
+              Gym and Training
+            </a>
             <a href="#a" className={classes.menuItem}>
               Jordan
             </a>
             <Link to="/football" className={classes.menuItem}>
               Football
             </Link>
-            <a href="#a" className={classes.menuItem}>
-              Gym and Training
-            </a>
+            <Link to="/basketball" className={classes.menuItem}>
+              Basketball
+            </Link>
             <a href="#a" className={classes.menuItem}>
               Skateboarding
             </a>
@@ -213,9 +210,6 @@ function MenMenu() {
             <Link to="/clothing" className={classes.menuTitle}>
               Clothing
             </Link>
-            {/* <a href="#a" className={classes.menuItem}>
-            All Clothing
-          </a> */}
             <Link
               to="/listProduct"
               className={classes.menuItem}
@@ -223,13 +217,16 @@ function MenMenu() {
                 dispatch(
                   action.createAction({
                     type: ActionType.CHANGE_GENDER_TYPEPRODUCT,
-                    payload: { gender: "male", typeProduct: "clothing" },
+                    payload: { gender: "female", typeProduct: "clothing" },
                   })
                 );
               }}
             >
-              All clothing
+              All Clothing
             </Link>
+            <a href="#a" className={classes.menuItem}>
+              Sports Bras
+            </a>
             <a href="#a" className={classes.menuItem}>
               Tops and T-Shirts
             </a>
@@ -255,6 +252,18 @@ function MenMenu() {
               Shorts
             </a>
             <a href="#a" className={classes.menuItem}>
+              Skirts and Dresses
+            </a>
+            <a href="#a" className={classes.menuItem}>
+              Jerseys and Kits
+            </a>
+            <a href="#a" className={classes.menuItem}>
+              Modest Wear
+            </a>
+            <a href="#a" className={classes.menuItem}>
+              Plus size
+            </a>
+            <a href="#a" className={classes.menuItem}>
               Caps
             </a>
             <a href="#a" className={classes.menuItem}>
@@ -276,14 +285,8 @@ function MenMenu() {
             <a href="#a" className={classes.menuTitle}>
               Shop By Sport
             </a>
-            <Link to="running" className={classes.menuItem}>
+            <Link to="/running" className={classes.menuItem}>
               Running
-            </Link>
-            <Link to="/football" className={classes.menuItem}>
-              Football
-            </Link>
-            <Link to="/basketball" className={classes.menuItem}>
-              Basketball
             </Link>
             <a href="#a" className={classes.menuItem}>
               Gym and Training
@@ -291,6 +294,12 @@ function MenMenu() {
             <a href="#a" className={classes.menuItem}>
               Yoga
             </a>
+            <Link to="/football" className={classes.menuItem}>
+              Football
+            </Link>
+            <Link to="/basketball" className={classes.menuItem}>
+              Basketball
+            </Link>
             <a href="#a" className={classes.menuItem}>
               Skateboarding
             </a>
@@ -356,4 +365,3 @@ function MenMenu() {
     </span>
   );
 }
-export default connect()(MenMenu);

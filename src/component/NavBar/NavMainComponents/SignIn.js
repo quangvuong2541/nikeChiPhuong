@@ -1,9 +1,7 @@
 import React from "react";
-import { makeStyles } from "@mui/styles";
-import Dialog from "@mui/material/Dialog";
-import Slide from "@mui/material/Slide";
+
 import CloseIcon from "@mui/icons-material/Close";
-import { IconButton } from "@mui/material";
+import IconButton from '@mui/material/IconButton';
 import { connect } from "react-redux";
 import * as action from "./Redux/Modules/actions/Action";
 import { useForm } from "react-hook-form";
@@ -11,9 +9,11 @@ import SignUp from "./Signup";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { LOGOUT } from "./Redux/Modules/constants/Constants";
 import { Link } from "react-router-dom";
+import { makeStyles } from "@mui/styles";
+import { Dialog } from "@mui/material";
+import { Slide } from "@mui/material";
 import { ErrorMessage } from "@hookform/error-message";
-
-// import Link from '@mui/material/Link';
+// import Link from '@material-ui/core/Link';
 
 const preventDefault = (event) => event.preventDefault();
 const useStyles = makeStyles((theme) => ({
@@ -31,16 +31,12 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 500,
     margin: "auto",
     width: 512,
-    // [theme.breakpoints.down("xs")]: {
-    //   width: 320,
-    // },
+  
   },
   SignInContainer: {
     margin: "0 28px",
     padding: 28,
-    // [theme.breakpoints.down("xs")]: {
-    //   margin: 0,
-    // },
+   
   },
   nike: {
     width: 50,
@@ -166,20 +162,10 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
   },
   signInWithNormal: {
-    // [theme.breakpoints.down("xs")]: {
-    //   display: "none",
-    // },
-    // [theme.breakpoints.up("sm")]: {
-    //   display: "block",
-    // },
+   
   },
   signInWithMobile: {
-    // [theme.breakpoints.down("xs")]: {
-    //   display: "block",
-    // },
-    // [theme.breakpoints.up("sm")]: {
-    //   display: "none",
-    // },
+   
   },
   UserMenuContainer: {
     padding: "24px 24px 24px 18px",
@@ -226,19 +212,12 @@ function SignIn(props) {
 
   const [userMenu, setUserMenu] = React.useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm( {criteriaMode: "all"});
-  // const onSubmit = (data) => console.log(data);
-  /*Validate form */
-  // const { register, handleSubmit, errors } = useForm({
-  //   mode: "onBlur",
-  // });
-  const onSubmit = (data, e) => {
-    console.log(data);
+  
+    /*Validate form */
+  const { register, handleSubmit, errors } = useForm({
+    mode: "onBlur",
+  });
+  const onSubmitSignIn = (data, e) => {
     let form = document.getElementById("formSignIn");
     form.reset();
     // console.log(data);
@@ -310,7 +289,7 @@ function SignIn(props) {
               </div>
 
               {/*Form*/}
-              <form id="formSignIn" onSubmit={handleSubmit(onSubmit)}>
+              <form id="formSignIn" onSubmit={handleSubmit(onSubmitSignIn)}>
                 {/*Input*/}
                 <div className={classes.inputContainer}>
                   <input
@@ -483,7 +462,7 @@ function SignIn(props) {
                 <CloseIcon />
               </IconButton>
 
-              {/* <SignUp /> */}
+              <SignUp />
 
               {/*Sign In*/}
               <center className={classes.joinUsContainer}>
@@ -513,7 +492,7 @@ function SignIn(props) {
             style={{ display: "flex", alignItems: "center" }}
           >
             Hi, {userLocal.user.name}
-
+          
             <PersonOutlineIcon className={classes.UserIcon} />
           </span>
 
@@ -521,24 +500,23 @@ function SignIn(props) {
           {userMenu && (
             <div className={classes.UserMenuContainer}>
               <div className={classes.UserMenuHeader}>Account</div>
-              <Link to="/user/profile" style={{ textDecoration: 'none' }}>
+              <Link to="/user/profile" style={{textDecoration:'none'}}>
                 <div className={classes.UserMenuItem}>Profile</div>
               </Link>
-              <Link to="/user/order" style={{ textDecoration: 'none' }}>
+              <Link to="/user/order" style={{textDecoration:'none'}}>
                 <div className={classes.UserMenuItem}>Orders</div>
               </Link>
-              <Link to="/user/favorite" style={{ textDecoration: 'none' }}>
+              <Link to="/user/favorite" style={{textDecoration:'none'}}>
                 <div className={classes.UserMenuItem}>Favourites</div>
               </Link>
               <div className={classes.UserMenuItem}>Inbox</div>
               <div className={classes.UserMenuItem}>Events</div>
               <div className={classes.UserMenuItem}>Account Settings</div>
-              {localStorage.getItem("isAdmin") ?
-                <Link to="/admin" style={{ textDecoration: 'none' }}>
+              {localStorage.getItem("isAdmin") ? 
+                <Link to="/admin" style={{textDecoration:'none'}}>
                   <div className={classes.UserMenuItem}>Admin Panel</div>
                 </Link>
-                : ''}
-              {/* <a href="truongquangvuong">nhnas em di</a> */}
+               : ''}
               <div
                 className={classes.UserMenuItem}
                 onClick={() => {
@@ -560,7 +538,7 @@ const mapStateToProps = (state) => {
     openSU: state.reducerSignInSignUp.openSU,
     userLocal: state.reducerSignInSignUp.user,
     isAdmin: state.reducerSignInSignUp.isAdmin
-
+   
   };
 
 };

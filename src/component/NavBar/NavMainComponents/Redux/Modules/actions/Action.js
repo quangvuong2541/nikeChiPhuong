@@ -1,7 +1,6 @@
 import * as ActionType from "../constants/Constants";
 
 import API from "../../../../../../axios/API";
-// import "react-toastify/dist/ReactToastify.css";
 
 export const emitOpenAction = (open) => {
   return {
@@ -43,8 +42,10 @@ export const fetchApiLoginUser = (data) => {
       else{
         localStorage.removeItem("isAdmin");
       }
+      // localStorage.setItem("isAdmin", true);
       localStorage.setItem("user", JSON.stringify(res.data));
       alert(res.data.messager);
+
       const userLocal = JSON.parse(localStorage.getItem("user"));
       const favorLocal = userLocal?.user.productsFavorite;
       localStorage.setItem("userFavor", JSON.stringify(favorLocal));

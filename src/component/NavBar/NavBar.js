@@ -1,24 +1,30 @@
 import React from 'react';
+import NavMain from "./NavMain";
 import NavSub from "./NavSub";
-import Hidden from '@mui/material/Hidden';
-import Container from '@mui/material/Container';
-import { Outlet } from "react-router-dom";
-import NavMain from './NavMain';
+import { Hidden } from '@mui/material';
+import { Container } from '@mui/system';
+import { Outlet } from 'react-router-dom';
+import { AppBar } from '@mui/material';
 
 export default function NavBar() {
     return (
-        <div>
+        <React.Fragment>
+
             <Hidden lgDown>
                 <Container maxWidth="xl">
-                    <NavSub />
+                    {/* <NavSub /> */}
+
                     <NavMain />
+                 
                 </Container>
             </Hidden>
             <Hidden xlUp>
-                <NavSub />
+                {/* <NavSub /> */}
+                
+                <NavMain />
 
             </Hidden>
             <Outlet />
-        </div>
+        </React.Fragment>
     )
 }
