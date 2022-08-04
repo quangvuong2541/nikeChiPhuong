@@ -7,6 +7,7 @@ import NavBar from "./component/NavBar/NavBar";
 import CartPage from "./pages/Cart/CartPage";
 import UserFavorite from "./pages/User/userFavorite";
 import UserProfile from "./pages/User/userProfile";
+import UserOrder from "./pages/User/userOrder";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/user/favorite" element={<UserFavorite />} />
           </Route>
           <Route path="/user/profile" element={<UserProfile />} />
+          <Route path="/user/order" element={<UserOrder />} />
         </Routes>
       </BrowserRouter>
     </div>
