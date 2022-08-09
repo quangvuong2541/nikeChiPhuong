@@ -85,18 +85,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavSub() {
   const classes = useStyles();
-  const history = useNavigate()
+  const history = useNavigate();
   const [helpMenu, setHelpMenu] = React.useState(false);
 
   return (
     <AppBar className={classes.nav} id="navsub">
       <Toolbar className={classes.toolbar}>
-  
-
         <Typography variant="h6" className={classes.title}></Typography>
         <div className={classes.nav1}>
-          <Link to ="/">home </Link>
-          
+          <Link to="/">Home </Link>
+
           <SignIn />
         </div>
       </Toolbar>

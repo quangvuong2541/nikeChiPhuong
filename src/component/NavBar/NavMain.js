@@ -55,23 +55,18 @@ export default function NavMain(props) {
 
   return (
     <div>
-      <React.Fragment >
-        
+      <React.Fragment>
         {/* <CssBaseline /> */}
 
         <HideOnScroll {...props}>
           <AppBar className={classes.nav}>
             <Toolbar className={classes.toolbar}>
-                    <NavMainMenu/>
+              <NavMainMenu />
             </Toolbar>
-
-
           </AppBar>
         </HideOnScroll>
         <div id="fallback" className={classes.fallback}></div>
       </React.Fragment>
-  
     </div>
-
   );
 }
