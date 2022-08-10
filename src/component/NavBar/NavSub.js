@@ -5,6 +5,9 @@ import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 import SignIn from "./NavMainComponents/SignIn";
 import { Link, useNavigate } from "react-router-dom";
+import * as action from "../ListProduct/Module/Actions/action";
+import * as ActionType from "../ListProduct/Module/Constants/constants";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   nav: {
@@ -87,6 +90,7 @@ export default function NavSub() {
   const classes = useStyles();
   const history = useNavigate();
   const [helpMenu, setHelpMenu] = React.useState(false);
+  const dispatch = useDispatch();
 
   return (
     <AppBar className={classes.nav} id="navsub">
@@ -94,6 +98,20 @@ export default function NavSub() {
         <Typography variant="h6" className={classes.title}></Typography>
         <div className={classes.nav1}>
           <Link to="/">Home </Link>
+          <Link
+            to="/listProduct"
+            className={classes.menuItem}
+            onClick={() => {
+              dispatch(
+                action.createAction({
+                  type: ActionType.CHANGE_GENDER_TYPEPRODUCT,
+                  payload: { gender: "male", typeProduct: "shoes" },
+                })
+              );
+            }}
+          >
+            All Shoes
+          </Link>
 
           <SignIn />
         </div>

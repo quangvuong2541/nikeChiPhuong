@@ -227,6 +227,7 @@ const ListProduct = () => {
 
   //call data from redux
   const dataFilter = useSelector((state) => state.reducerURL.dataFilter);
+  //console.log(dataFilter);
 
   return (
     <div className={classes.container}>
