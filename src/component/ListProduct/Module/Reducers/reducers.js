@@ -40,8 +40,35 @@ const Reducer = (state = initialState, { type, payload }) => {
         })
       );
       console.log(state.gender);
-
       break;
+    case ActionType.FETCH_API_LISTPRODUCT:
+      // console.log(payload);
+      state.data = payload;
+      state.dataSort = payload;
+      state.dataFilter = payload;
+      break;
+    case ActionType.SORT_DATA:
+      state.dataSort = payload;
+      break;
+    case ActionType.FILTER_COLOR_DATA:
+      state.dataFilter = payload;
+      break;
+    case ActionType.FILTER_COLOR:
+      state.filterColor = payload.filterColor;
+      break;
+    case ActionType.FILTER_SIZE:
+      state.filterSize = payload.filterSize;
+      break;
+    case ActionType.SORT_BY_TITLE:
+      state.sortByTitle = payload;
+      break;
+    case ActionType.DATA_SEARCH:
+      state.dataSearchList = payload;
+      break;
+    case ActionType.DATA_SEARCH_INPUT:
+      state.dataSearchInput = payload;
+      break;
+
     default:
       break;
   }
